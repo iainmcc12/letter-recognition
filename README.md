@@ -1,2 +1,2 @@
 # letter-recognition
-machine learns
+Machine learns to recognize hand written letters.
