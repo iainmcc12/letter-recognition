@@ -1,3 +1,6 @@
+# This program program collects the letters you draw and stores them as data
+# Requires ghostscript to work
+# When a letter is printed to command line, draw it on the tkinter canvas and when done press space to proceed to next letter
 from tkinter import *
 from tkinter.colorchooser import askcolor
 from PIL import ImageEnhance
