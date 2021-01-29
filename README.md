@@ -1,2 +1,2 @@
 # letter-recognition
-Machine learns to recognize hand written letters.
+Neural network learns to recognize hand written letters.
