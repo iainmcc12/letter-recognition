@@ -7,8 +7,6 @@ from data import data_loader
 
 train_images = data_loader.revert_data(data_loader.load_train_images())
 train_labels = data_loader.load_train_labels()
-test_images = data_loader.revert_data(data_loader.load_evaluation_images())
-test_labels = data_loader.load_evaluation_labels()
 
 print('Plotting...')
 plt.figure(figsize=(10,10))
@@ -17,7 +15,7 @@ for i in range(25):
     plt.xticks([])
     plt.yticks([])
     plt.grid(False)
-    plt.imshow(test_images[i], cmap=plt.cm.binary)
-    plt.xlabel(data_loader.revert_label(test_labels[i]))
+    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.xlabel(data_loader.revert_label(train_labels[i]))
 print('Saving...')
 plt.savefig('test.png')
