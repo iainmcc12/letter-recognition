@@ -7,17 +7,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
-with open('expanded_training_images.pkl', 'rb') as f:
-    train_images = pickle.load(f)
-with open('expanded_training_labels.pkl', 'rb') as f:
-    train_labels = pickle.load(f)
-with open('drive/MyDrive/test_data/evaluation_images.pkl', 'rb') as f:
-    test_images = pickle.load(f)
-with open('drive/MyDrive/test_data/evaluation_labels.pkl', 'rb') as f:
-    test_labels = pickle.load(f)
-
-train_images = train_images.reshape(len(train_images),28,28,1) / 255.0
-test_images = test_images.reshape(len(test_images),28,28,1,1) 
+train_images, train_labels = data_loader.load_train_data()
+test_images, test_labels = data_loader.load_evaluation_data()
+train_images = train_images.reshape(len(train_images),28,28,1)
+test_images = test_images.reshape(len(test_images),28,28,1)
 
 class_names = 'abcdefghijklmnopqrstuvwxyz'
 checkpoint_path = 'trained_models/cnn/cp.ckpt'
@@ -89,7 +82,7 @@ while True:
     print('Test accuracy:', test_acc)
 
     if input('\nTrain for more epochs? (y/n) ') != 'y':
-    #    if input('Save model? (y/n) ') == 'y':
-        print('Saving entire model...')
-        model.save('trained_models/cnn/cnn.h5')
-        break
+        if input('Save model? (y/n) ') == 'y':
+            print('Saving entire model...')
+            model.save('trained_models/cnn/cnn.h5')
+            break
