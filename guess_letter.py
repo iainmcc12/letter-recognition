@@ -1,4 +1,6 @@
-# very weird and unorganized code, but it works
+# Draw a letter on tkinter canvas and press space for network to guess letter. Output will be on the command line window
+# Requires ghostscript
+# Requires tensorflow 1.5, but might work on newer versions without too much change in code
 from tkinter import *
 from tkinter.colorchooser import askcolor
 from PIL import ImageEnhance
@@ -24,6 +26,8 @@ class Guess(object):
         self.path = 'trained_models/'
         self.models = []
         self.n = 1
+        # Tries to load all models with the name "cnn(N).h5" where N is the model number
+        # If you have one model in the path, it's name must be "cnn1.h5", and if you have a second model, it's name must be "cnn2.h5" and so on
         while True:
             try:
                 self.models.append(keras.models.load_model('{}cnn{}.h5'.format(self.path,self.n)))
@@ -72,8 +76,9 @@ class Guess(object):
         return invert(self.im)
     
     def guess(self):
-        self.image = np.asarray(self.format()).reshape(1,28,28,1) / 255.0 # add another dimension if using cnn
+        self.image = np.asarray(self.format()).reshape(1,28,28,1) / 255.0 
         self.prediction = 0
+        # Adds all models predictions
         for model in self.models:
             self.prediction += model.predict(self.image)
         print('\nThat looks like the letter {}!'.format(self.class_names[np.argmax(self.prediction[0])]))
