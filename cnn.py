@@ -1,4 +1,4 @@
-# A deep convolutional neural network based on LeNet-5 architecture
+# A convolutional neural network based on LeNet-5 architecture
 print('Loading...')
 import tensorflow as tf
 from tensorflow import keras
